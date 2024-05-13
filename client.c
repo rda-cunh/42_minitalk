@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:05:48 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/13 16:43:49 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/13 18:45:46 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 int main(int argc, char **argv)
 {
-    int i;
     int bitshift;
     char    word; 
     
@@ -27,8 +26,11 @@ int main(int argc, char **argv)
     {
         if (word & 0x80 >> bitshift)
             printf("1");
-        
-    } 
+        else 
+            printf("0");
+    }
+    printf("\n");
+    return (0); 
 }
 
 /*
