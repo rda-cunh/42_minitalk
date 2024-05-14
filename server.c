@@ -6,31 +6,33 @@
 /*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:06:09 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/14 18:45:02 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:48:19 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include <stdio.h> // remove after testing and including libft functions
 
-void    handler_sigusr1(int signum)
+void	handler_sigusr2(int signum)
 {
-    (void)signum; 
-    printf("1");
+   (void)signum;
+   printf("0");
 }
 
-void    handler_sigusr2(int signum)
+void	handler_sigusr1(int signum)
 {
-    (void)signum; 
-    printf("0");
+   (void)signum;
+   printf("1");
 }
 
-int main(void) 
+int	main(void)
 {
-    printf("PID = %d\n", getpid());
-    signal(SIGUSR1, handler_sigusr1);
-    signal(SIGUSR2, handler_sigusr2); 
-    while (1)
-        pause(); 
-    return (0); 
+   pid_t	pid;
+
+   pid = getpid();
+   printf("PID: %d\n", pid);
+   signal(SIGUSR1, handler_sigusr1);
+   signal(SIGUSR2, handler_sigusr2);
+   while (1)
+   	pause();
 }

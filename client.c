@@ -6,44 +6,45 @@
 /*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:05:48 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/14 18:46:29 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:58:30 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include <stdio.h> // remove after testing and including libft functions
 
-void    signal_sender(char *message, int pid)
+void	send_signals(char *message, int pid)
 {
-    int i;
-    int bitshift;
+   int	i;
+   int	shift;
 
-    i = 0; 
-    bitshift = -1;
-    while (message[i])
-    {
-        while(++bitshift < 8)
-        {
-            if (message[i] & 0x80 >> bitshift)
-                kill(pid, SIGUSR1);
-            else
-                kill(pid, SIGUSR2);
-            usleep(3);
-        }
-        i++;
-    }  
+   shift = -1;
+   i = 0;
+   while (message[i])
+   {
+   	while (++shift < 8)
+   	{
+   		if (message[i] & 0x80 >>shift)
+   			kill(pid, SIGUSR2);
+   		else
+   			kill(pid, SIGUSR1);
+   		usleep(3);
+   	}
+   	i++;
+   }
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char *argv[])
 {
-    int pid;
+   int		pid;
 
-    if (argc != 3)
-    {
-        printf("Client: invalid argument.\n");
-        exit(EXIT_FAILURE);
-    }
-    pid = atoi(argv[1]);
-    signal_sender(argv[2], pid);
-    return (0); 
+   if (argc != 3)
+   {
+   	printf("client: invalid arguments\n");
+   	printf("\tcorrect format [./%s SERVER_PID MESSAGE\n]", argv[0]);
+   	exit(EXIT_FAILURE);
+   }
+   pid = atoi(argv[1]);
+   send_signals(argv[2], pid);
+   return (0);
 }
