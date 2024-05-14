@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:05:48 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/14 18:58:30 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:07:22 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	send_signals(char *message, int pid)
    {
    	while (++shift < 8)
    	{
-   		if (message[i] & 0x80 >>shift)
+   		if (message[i] & 0x80 >> shift)
    			kill(pid, SIGUSR2);
    		else
    			kill(pid, SIGUSR1);
@@ -41,7 +41,6 @@ int	main(int argc, char *argv[])
    if (argc != 3)
    {
    	printf("client: invalid arguments\n");
-   	printf("\tcorrect format [./%s SERVER_PID MESSAGE\n]", argv[0]);
    	exit(EXIT_FAILURE);
    }
    pid = atoi(argv[1]);
