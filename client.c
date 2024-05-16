@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:05:48 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/14 23:21:31 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:52:29 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,15 @@ void	send_signals(char *message, int pid)
    	while (++shift < 8)
    	{
    		if (message[i] & 0x80 >> shift)
-   			kill(pid, SIGUSR2);
+         {
+   			if (kill(pid, SIGUSR2) == -1)
+               exit(1);
+         }         
    		else
-   			kill(pid, SIGUSR1);
+         {
+            if (kill(pid, SIGUSR1) == -1)
+               exit(1);
+         }
    		usleep(3);
    	}
    	i++;
