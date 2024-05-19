@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:06:09 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/16 17:03:47 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/17 19:47:24 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include <stdio.h> // remove after testing and including libft functions
+
+//this function is called in case of an error occurred in a kill() system call
+
+void	error_handling(int pid, char *str)
+{
+	if 
+}
+
 
 void handler_sigusr(int signum) 
 {
@@ -37,9 +45,12 @@ void handler_sigusr(int signum)
     }
 }
 
+// main function of the server 
+
 int main(void) 
 {
-    pid_t   pid;
+    
+	pid_t   pid;
     
     pid = getpid();
     printf("PID = %d\n", pid);
