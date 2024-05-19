@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:06:09 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/17 19:47:24 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:10:39 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,22 @@ void handler_sigusr(int signum)
 
 // main function of the server 
 
-int main(void) 
+int	main(void)
 {
-    
-	pid_t   pid;
-    
-    pid = getpid();
-    printf("PID = %d\n", pid);
-    
-    // Set up signal handlers
-    signal(SIGUSR1, handler_sigusr);
-    signal(SIGUSR2, handler_sigusr);
+	struct sigaction	sa_signal;
+	sigset_t			block_mask;
 
-    // Enter infinite loop waiting for signals
-    while (1)
-        pause();
-    return 0;
+	sigemptyset(&block_mask);
+	sigaddset(&block_mask, SIGINT);
+	sigaddset(&block_mask, SIGQUIT);
+	sa_signal.sa_handler = 0;
+	sa_signal.sa_flags = SA_SIGINFO;
+	sa_signal.sa_mask = block_mask;
+	sa_signal.sa_sigaction = handler_sigusr;
+	sigaction(SIGUSR1, &sa_signal, NULL);
+	sigaction(SIGUSR2, &sa_signal, NULL);
+	printf("PID: %d\n", getpid());
+	while (1)
+		pause();
+	return (0);
 }
