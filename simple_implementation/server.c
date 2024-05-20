@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:16:32 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/20 13:27:09 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/20 13:44:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void    handler_sigusr(int signum)
     static unsigned char buff;
     static int  i; 
 
-    buff |= (sigsent == SIGUSR1)
+    buff |= (signum == SIGUSR1);
     i++;
     if (i == 8)
     {
-        printf(%c, buff);
+        printf("%c", buff);
         i = 0;
         buff = 0;
     }
