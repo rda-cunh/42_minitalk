@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:16:32 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/21 16:50:12 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/21 17:42:20 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    handler(int signum)
     i++;
     if (i == 8)
     {
-        printf("%c", c);
+        write(STDOUT_FILENO, &c, 1);
         i = 0;
         c = 0; 
     }

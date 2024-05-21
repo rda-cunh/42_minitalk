@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/21 17:08:22 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/21 17:18:02 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,26 @@
 void    send_signals(int pid, unsigned char octet)
 {
     int i;
-    unsigned char   octet_tmp;
 
-    octet_tmp = octet;
     i = 8;
     while (i-- > 0)
     {
-        octet_tmp = octet >> i;
-        if (octet_tmp % 2 == 0)
-            kill(pid, SIGUSR2);
+        if (octet & (1 << i))
+        {
+            if (kill(pid, SIGUSR1) == -1)
+            {
+                perror("Error sending SIGUSR1");
+                exit(1);
+            }
+        }
         else
-            kill(pid, SIGUSR1);
+        {
+            if (kill(pid, SIGUSR2) == -1)
+            {
+                perror("Error sending SIGUSR2");
+                exit(1);
+            }
+        }
         usleep(100);
     }
 }
