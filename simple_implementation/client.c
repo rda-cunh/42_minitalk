@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/20 16:39:10 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/21 17:08:22 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int main(int argc, char **argv)
 
     if (argc != 3)
     {
-        printf("Arguments are not correct\n");
+        printf("Number of arguments provided is not correct.\n");
         return (1);
     }
-    pid = atoi(argv[2]);
+    pid = atoi(argv[1]);
     str_to_send = argv[2];
     i = 0;
     while (str_to_send[i])
@@ -51,7 +51,7 @@ int main(int argc, char **argv)
         send_signals(pid, (unsigned char)str_to_send[i]);
         i++;
     }
-    printf("Number of characters sent: %d", i);
+    printf("Number of characters sent: %d\n", i);
     return (0);
 }
 
