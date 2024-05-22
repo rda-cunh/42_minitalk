@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 13:15:25 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/21 17:07:36 by codespace        ###   ########.fr       */
+/*   Created: 2024/05/23 00:42:58 by rda-cunh          #+#    #+#             */
+/*   Updated: 2024/05/23 00:50:34 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 #include <signal.h> //signal name macros, and the signal()prototype
 #include <stdlib.h> //defines the constant 'EXIT_FAILURE' and funtions like atoi
 #include <sys/types.h> 
+#include "libft/libft.h"
 
 #endif

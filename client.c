@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 12:58:21 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/21 17:18:02 by codespace        ###   ########.fr       */
+/*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
+/*   Updated: 2024/05/23 00:45:07 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
         printf("Number of arguments provided is not correct.\n");
         return (1);
     }
-    pid = atoi(argv[1]);
+    pid = ft_atoi(argv[1]);
     str_to_send = argv[2];
     i = 0;
     while (str_to_send[i])
