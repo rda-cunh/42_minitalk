@@ -3,66 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 14:06:09 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/19 17:10:39 by rda-cunh         ###   ########.fr       */
+/*   Created: 2024/05/20 13:16:32 by rda-cunh          #+#    #+#             */
+/*   Updated: 2024/05/21 17:42:20 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h> // remove after testing and including libft functions
+#include <stdio.h> // remove after changing printf for ft_printf
 
-//this function is called in case of an error occurred in a kill() system call
-
-void	error_handling(int pid, char *str)
+void    handler(int signum)
 {
-	if 
-}
+    static unsigned char c = 0;
+    static int  i = 0; 
 
-
-void handler_sigusr(int signum) 
-{
-    static char c = 0xFF;
-    static int  bits = 0; 
-    
-    if (signum == SIGUSR1)
+    if (signum == SIGUSR2)
+        c = c << 1;
+    else if (signum == SIGUSR1)
+        c = (c << 1) | 0b00000001;
+    i++;
+    if (i == 8)
     {
-        printf("0");
-        c ^= 0x80 >> bits; 
-    }
-    else if (signum == SIGUSR2)
-    {
-        printf("1"); 
-        c |= 0x80 >> bits; 
-    }
-    bits++;
-    if (bits == 8)
-    {
-        printf("-> %c\n", c);
-        bits = 0;
-        c = 0xFF; 
+        write(STDOUT_FILENO, &c, 1);
+        i = 0;
+        c = 0; 
     }
 }
 
-// main function of the server 
-
-int	main(void)
+int main(void)
 {
-	struct sigaction	sa_signal;
-	sigset_t			block_mask;
-
-	sigemptyset(&block_mask);
-	sigaddset(&block_mask, SIGINT);
-	sigaddset(&block_mask, SIGQUIT);
-	sa_signal.sa_handler = 0;
-	sa_signal.sa_flags = SA_SIGINFO;
-	sa_signal.sa_mask = block_mask;
-	sa_signal.sa_sigaction = handler_sigusr;
-	sigaction(SIGUSR1, &sa_signal, NULL);
-	sigaction(SIGUSR2, &sa_signal, NULL);
-	printf("PID: %d\n", getpid());
-	while (1)
-		pause();
-	return (0);
+    printf("My PID is: %d\n", getpid());
+    while (1)
+    {
+        signal(SIGUSR2, handler);
+        signal(SIGUSR1, handler);
+    }
+    return (0);
 }
