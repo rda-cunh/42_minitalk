@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:16:32 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/23 12:41:09 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/23 13:03:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void    handler(int signum)
 int main(void)
 {
     ft_printf("My PID is: %d\n", getpid());
+    signal(SIGUSR2, handler);
+    signal(SIGUSR1, handler);
     while (1)
     {
-        signal(SIGUSR2, handler);
-        signal(SIGUSR1, handler);
+        pause(); 
     }
     return (0);
 }

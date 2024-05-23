@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/23 12:42:20 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/23 13:10:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void    send_signals(int pid, unsigned char octet)
                 exit(1);
             }
         }
-        usleep(100);
+        usleep(300);
     }
 }
 
