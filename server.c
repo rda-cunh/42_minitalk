@@ -6,12 +6,11 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:16:32 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/23 12:36:54 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/23 12:41:09 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h> // remove after changing printf for ft_printf
 
 void    handler(int signum)
 {
@@ -33,7 +32,7 @@ void    handler(int signum)
 
 int main(void)
 {
-    printf("My PID is: %d\n", getpid());
+    ft_printf("My PID is: %d\n", getpid());
     while (1)
     {
         signal(SIGUSR2, handler);
