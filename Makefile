@@ -3,61 +3,63 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
+#    By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 14:06:59 by rda-cunh          #+#    #+#              #
-#    Updated: 2024/05/23 13:13:38 by codespace        ###   ########.fr        #
+#    Updated: 2024/05/25 23:19:33 by rda-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME_C = client
 NAME_S = server
+# NAME_CBONUS = client_bonus
+# NAME_SBONUS = server_bonus
 
-NAME_CBONUS = client_bonus
-NAME_SBONUS = server_bonus
+SRC_S = server.c
+SRC_C = client.c
+# SRC_CBONUS = client_bonus.c
+# SRC_SBONUS = server_bonus.c
+
+OBJ_S = $(SRC_S:.c=.o)
+OBJ_C = $(SRC_C:.c=.o)
+# OBJ_SBONUS = $(SRC_SBONUS:.c=.o)
+# OBJ_CBONUS = $(SRC_CBONUS:.c=.o)
+
+LIBFT       = ./libft/libft.a
+LIBFTDIR    = ./libft
 
 CC = cc
 FLAGS = -Wall -Wextra -Werror
-RM = rm -f
-
-SRC_S = server.c
-OBJ_S = $(SRC_S:.c=.o)
-SRC_C = client.c
-OBJ_C = $(SRC_C:.c=.o)
-
-SRC_CBONUS = client_bonus.c
-OBJ_CBONUS = $(SRC_CBONUS:.c=.o)
-SRC_SBONUS = server_bonus.c
-OBJ_SBONUS = $(SRC_SBONUS:.c=.o)
+RM = rm -rf
 
 %.o: %.c
-	@$(CC) $(FLAGS) -c $< -o $@
+    @$(CC) $(FLAGS) -c $< -o $@
 
-bonus:  all client_bonus server_bonus
-client_bonus: libft $(OBJ_CBONUS)
-	@ $(CC) $(FLAGS) -o $(NAME_CBONUS) $(OBJ_CBONUS) libft/*.o
+all: $(NAME_S) $(NAME_C)
 
-server_bonus: libft $(OBJ_SBONUS)
-	@ $(CC) $(FLAGS) -o $(NAME_SBONUS) $(OBJ_SBONUS) libft/*.o
+$(NAME_S): $(OBJ_S) $(LIBFT)
+        $(CC) $(FLAGS) $(OBJ_S) $(LIBFT) -o $(NAME_S)
 
-all: client server
-server: libft $(OBJ_S)
-	@ $(CC) $(FLAGS) -o $(NAME_S) $(OBJ_S) libft/*.o
+$(NAME_C): $(OBJ_C) $(LIBFT)
+        $(CC) $(FLAGS) $(OBJ_C) $(LIBFT) -o $(NAME_C)
 
-client: libft $(OBJ_C)
-	@ $(CC) $(FLAGS) -o $(NAME_C) $(OBJ_C) libft/*.o
+$(LIBFT):   $(LIBFTDIR)
+            $(MAKE) -C ${LIBFTDIR}
 
-libft:
-	@ make -C libft/
+# bonus: $(OBJ_SBONUS) $(OBJ_CBONUS) $(LIBFT)
+#       $(FLAGS) $(OBJ_SBONUS) $(LIBFT) -o $(NAME_S)
+#       $(FLAGS) $(OBJ_CBONUS) $(LIBFT) -o $(NAME_C)
 
-clean:
-	@ $(RM) $(OBJ_S) $(OBJ_C) $(OBJ_SBONUS) $(OBJ_CBONUS)
-	@ make -C libft/ clean
+clean:  
+        $(MAKE) clean -C $(LIBFTDIR)
+        $(RM) $(OBJ_S) $(OBJ_C) 
+#       $(RM) $(OBJ_SBONUS) $(OBJ_CBONUS)
 
 fclean: clean
-	@ $(RM) $(NAME_S) $(NAME_C) $(NAME_SBONUS) $(NAME_CBONUS)
-	@ make -C libft/ fclean
+        $(MAKE) fclean -C $(LIBFTDIR)
+        $(RM) $(NAME_S) $(NAME_S)
+#       $(RM) $(NAME_SBONUS) $(NAME_CBONUS)
 
 re: fclean all
 
-.PHONY: all libft clean fclean bonus re client_bonus server_bonus client server
+.PHONY: all bonus clean fclean re
