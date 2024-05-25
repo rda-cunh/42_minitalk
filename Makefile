@@ -6,7 +6,7 @@
 #    By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 14:06:59 by rda-cunh          #+#    #+#              #
-#    Updated: 2024/05/25 23:19:33 by rda-cunh         ###   ########.fr        #
+#    Updated: 2024/05/25 23:39:22 by rda-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,31 +33,31 @@ FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 %.o: %.c
-    @$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
 all: $(NAME_S) $(NAME_C)
 
 $(NAME_S): $(OBJ_S) $(LIBFT)
-        $(CC) $(FLAGS) $(OBJ_S) $(LIBFT) -o $(NAME_S)
+	$(CC) $(FLAGS) $(OBJ_S) $(LIBFT) -o $(NAME_S)
 
 $(NAME_C): $(OBJ_C) $(LIBFT)
-        $(CC) $(FLAGS) $(OBJ_C) $(LIBFT) -o $(NAME_C)
+	$(CC) $(FLAGS) $(OBJ_C) $(LIBFT) -o $(NAME_C)
 
-$(LIBFT):   $(LIBFTDIR)
-            $(MAKE) -C ${LIBFTDIR}
+$(LIBFT): $(LIBFTDIR)
+	$(MAKE) -C ${LIBFTDIR}
 
 # bonus: $(OBJ_SBONUS) $(OBJ_CBONUS) $(LIBFT)
 #       $(FLAGS) $(OBJ_SBONUS) $(LIBFT) -o $(NAME_S)
 #       $(FLAGS) $(OBJ_CBONUS) $(LIBFT) -o $(NAME_C)
 
 clean:  
-        $(MAKE) clean -C $(LIBFTDIR)
-        $(RM) $(OBJ_S) $(OBJ_C) 
+	$(MAKE) clean -C $(LIBFTDIR)
+	$(RM) $(OBJ_S) $(OBJ_C) 
 #       $(RM) $(OBJ_SBONUS) $(OBJ_CBONUS)
 
 fclean: clean
-        $(MAKE) fclean -C $(LIBFTDIR)
-        $(RM) $(NAME_S) $(NAME_S)
+	$(MAKE) fclean -C $(LIBFTDIR)
+	$(RM) $(NAME_S) $(NAME_S)
 #       $(RM) $(NAME_SBONUS) $(NAME_CBONUS)
 
 re: fclean all
