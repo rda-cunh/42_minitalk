@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/25 23:31:10 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/05/25 23:32:16 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,3 @@ int	main(int argc, char **argv)
 	ft_printf("Number of characters sent: %d\n", i);
 	return (0);
 }
-
