@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/25 23:32:16 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/05/26 12:35:07 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	send_signals(int pid, unsigned char octet)
 				exit(1);
 			}
 		}
-		usleep(300);
+		usleep(500);
 	}
 }
 

@@ -6,7 +6,7 @@
 #    By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 14:06:59 by rda-cunh          #+#    #+#              #
-#    Updated: 2024/05/25 23:50:16 by rda-cunh         ###   ########.fr        #
+#    Updated: 2024/05/26 12:54:54 by rda-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ clean:
 
 fclean: clean
 	$(MAKE) fclean -C $(LIBFTDIR)
-	$(RM) $(NAME_S) $(NAME_S)
+	$(RM) $(NAME_S) $(NAME_C)
 #       $(RM) $(NAME_SBONUS) $(NAME_CBONUS)
 
 re: fclean all
