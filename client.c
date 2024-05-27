@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/26 12:35:07 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/05/27 23:29:14 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,15 @@ void	send_signals(int pid, unsigned char octet)
 {
 	int	i;
 
-	i = 8;
-	while (i-- > 0)
+	i = 0;
+	while (i < 8)
 	{
-		if (octet & (1 << i))
-		{
-			if (kill(pid, SIGUSR1) == -1)
-			{
-				perror("Error sending SIGUSR1");
-				exit(1);
-			}
-		}
+		if (octet & (0b10000000 >> i))
+			kill(pid, SIGUSR1);
 		else
-		{
-			if (kill(pid, SIGUSR2) == -1)
-			{
-				perror("Error sending SIGUSR2");
-				exit(1);
-			}
-		}
+			kill(pid, SIGUSR2);
 		usleep(500);
+		i++;
 	}
 }
 
@@ -48,7 +37,7 @@ int	main(int argc, char **argv)
 	if (argc != 3)
 	{
 		ft_printf("Number of arguments provided is not correct.\n");
-		return (1);
+		return (EXIT_FAILURE);
 	}
 	pid = ft_atoi(argv[1]);
 	str_to_send = argv[2];
