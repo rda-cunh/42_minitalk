@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:16:32 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/28 13:13:39 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/28 23:29:38 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ void	handler(int signum)
 		write(STDOUT_FILENO, &c, 1);
 		i = 0;
 		c = 0;
+		if (kill(info->si_pid, SIGUSR1) == -1)
+			ft_printf("Unable to send SIGUSR1\n");
+		return ;
 	}
+	if (kill(info->si_pid, SIGUSR2) == -1)
+		ft_printf("Unable to send SIGUSR2\n");
 }
 
 int	main(void)
