@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:16:32 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/28 23:29:38 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:18:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	handler(int signum)
+void	handler(int signum, siginfo_t *info, void *content)
 {
 	static unsigned char	c = 0;
 	static int				i = 0;
 
+	(void)content;
 	if (signum == SIGUSR2)
 		c = c << 1;
 	else if (signum == SIGUSR1)
