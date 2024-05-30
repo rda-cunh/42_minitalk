@@ -6,7 +6,7 @@
 #    By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 14:06:59 by rda-cunh          #+#    #+#              #
-#    Updated: 2024/05/28 23:31:15 by rda-cunh         ###   ########.fr        #
+#    Updated: 2024/05/30 15:19:01 by rda-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,8 @@ $(LIBFT): $(LIBFTDIR)
 	$(MAKE) -C ${LIBFTDIR}
 
 bonus: $(OBJ_SBONUS) $(OBJ_CBONUS) $(LIBFT)
-	$(FLAGS) $(OBJ_SBONUS) $(LIBFT) -o $(NAME_S)
-	$(FLAGS) $(OBJ_CBONUS) $(LIBFT) -o $(NAME_C)
+	$(CC) $(FLAGS) $(OBJ_SBONUS) $(LIBFT) -o $(NAME_SBONUS)
+	$(CC) $(FLAGS) $(OBJ_CBONUS) $(LIBFT) -o $(NAME_CBONUS)
 
 clean:  
 	$(MAKE) clean -C $(LIBFTDIR)

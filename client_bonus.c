@@ -6,26 +6,23 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/30 12:27:53 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:48:35 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-volatile sig_atomic_t aknowledgement = 0;
 
 void	send_signals(int pid, char *str)
 {
 	int	i;
 	int	c;
 
-	i = 0;
 	while (*str)
 	{
+		i = 0;
 		c = *(str);
 		while (i < 8)
 		{
-			aknowledgement = 0;
 			if (c & (0b10000000 >> i))
 			{
 				if (kill(pid, SIGUSR1) == -1)
@@ -37,18 +34,24 @@ void	send_signals(int pid, char *str)
 					ft_printf("Unable to send SIGUSR2\n");
 			}
 			i++;
-			while(!aknowledgement)
-				usleep(500);
+			usleep(500);
 		}
 		str++;
-		i = 0;
 	}
 }
 
-void	handler(int	signum)
+void	handler(int signum)
 {
-	if (signum == SIGUSR1)
-		aknowledgement = 1;
+	static int	message_printed = 0;
+
+	if (!message_printed)
+	{
+		if (signum == SIGUSR1)
+		{
+			ft_printf("Message sent and received by server.\n");
+			message_printed = 1;
+		}
+	}
 }
 
 int	is_valid_pid(const char *pid)
@@ -71,8 +74,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 3 || argv[2][0] == '\0' || !is_valid_pid(argv[1]))
 	{
-		ft_printf("Incorrect number of arguments, empty message or\
-		 invalid PID.\n");
+		ft_printf("Incorrect number of arguments, empty message"
+			" or invalid PID.\n");
 		return (EXIT_FAILURE);
 	}
 	sa_signal.sa_handler = &handler;
@@ -80,14 +83,15 @@ int	main(int argc, char **argv)
 	sigemptyset(&sa_signal.sa_mask);
 	if (sigaction(SIGUSR2, &sa_signal, NULL) == -1)
 	{
-		ft_printf("Error setting handler for SIGUSR2");
+		ft_printf("Error setting handler for SIGUSR2\n");
 		return (EXIT_FAILURE);
 	}
 	if (sigaction(SIGUSR1, &sa_signal, NULL) == -1)
 	{
-		ft_printf("Error setting handler for SIGUSR1");
+		ft_printf("Error setting handler for SIGUSR1\n");
 		return (EXIT_FAILURE);
 	}
 	send_signals(ft_atoi(argv[1]), argv[2]);
+//	ft_printf("Message sent successfully.\n");
 	return (EXIT_SUCCESS);
 }
