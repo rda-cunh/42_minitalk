@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/30 17:48:35 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:41:33 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	handler(int signum)
 	{
 		if (signum == SIGUSR1)
 		{
-			ft_printf("Message sent and received by server.\n");
+			ft_printf("Message acknowledged by server.\n");
 			message_printed = 1;
 		}
 	}
@@ -92,6 +92,5 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	send_signals(ft_atoi(argv[1]), argv[2]);
-//	ft_printf("Message sent successfully.\n");
 	return (EXIT_SUCCESS);
 }
