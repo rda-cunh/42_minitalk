@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:16:32 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/29 11:18:13 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/30 12:20:18 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	handler(int signum, siginfo_t *info, void *content)
 			ft_printf("Unable to send SIGUSR1\n");
 		return ;
 	}
-	if (kill(info->si_pid, SIGUSR2) == -1)
-		ft_printf("Unable to send SIGUSR2\n");
+//	if (kill(info->si_pid, SIGUSR2) == -1)
+//		ft_printf("Unable to send SIGUSR2\n");
 }
 
 int	main(void)
@@ -51,7 +51,7 @@ int	main(void)
 	}
 	if (sigaction(SIGUSR1, &sa_signal, NULL) == -1)
 	{
-		ft_printf("Error setting handler for SIGUSR1")
+		ft_printf("Error setting handler for SIGUSR1");
 		return (EXIT_FAILURE);
 	}
 	while (1)
