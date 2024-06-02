@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/06/02 18:43:50 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/06/02 22:12:29 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	send_signals(int pid, char *str)
 					ft_printf("Unable to send SIGUSR2\n");
 			}
 			i++;
-			usleep(500);
+			usleep(750);
 		}
 		str++;
 	}
