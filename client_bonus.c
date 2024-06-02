@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/06/02 22:12:29 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/06/02 22:37:04 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //iniatialize string and sends 8 bits of each characters in the string
 //sends SIGUSR1 for '1' bits and SIGUSR2 for '0' bits
 //if unable to send signal aknowledge that to user
-//wait 500 microseconds btw signals sent to ensure better communication
+//wait 1000 microseconds btw signals sent to ensure better communication
 
 void	send_signals(int pid, char *str)
 {
@@ -39,7 +39,7 @@ void	send_signals(int pid, char *str)
 					ft_printf("Unable to send SIGUSR2\n");
 			}
 			i++;
-			usleep(750);
+			usleep(1000);
 		}
 		str++;
 	}
