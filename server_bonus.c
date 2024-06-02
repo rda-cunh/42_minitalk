@@ -6,11 +6,17 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:16:32 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/30 17:13:42 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:26:06 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+//signal handler function
+//shift the character left and add a bit based on the signal received
+//increment bit counter
+//if 8 bits are received print the character
+//send aknowledgement signal back to the client
 
 void	handler(int signum, siginfo_t *info, void *content)
 {
@@ -33,6 +39,11 @@ void	handler(int signum, siginfo_t *info, void *content)
 		return ;
 	}
 }
+
+//print server PID
+//configures sigaction handler funtion
+//sets signals handlers for SIGUSR1 and SIGUSR2 
+//wait for signals using an infinite loop
 
 int	main(void)
 {

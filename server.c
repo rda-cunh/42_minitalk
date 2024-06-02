@@ -6,9 +6,14 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:16:32 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/25 23:25:40 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:59:59 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//signal handler function
+//shift the character left and add a bit based on the signal received
+//increment bit counter i
+//if the 8 bits are received print the character
 
 #include "minitalk.h"
 
@@ -29,6 +34,10 @@ void	handler(int signum)
 		c = 0;
 	}
 }
+
+//print server PID
+//sets signals handlers for SIGUSR1 and SIGUSR2 using signal function
+//wait for signals using an infinite loop
 
 int	main(void)
 {

@@ -6,11 +6,15 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/30 18:01:10 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:13:42 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+//sends the signals corresponding to each bit of the characters in the string
+//sends SIGUSR1 for '1' bits and SIGUSR2 for '0' bits
+//wait 1000 microseconds btw signals sent to ensure better communication
 
 void	send_signals(int pid, unsigned char octet)
 {
@@ -27,6 +31,10 @@ void	send_signals(int pid, unsigned char octet)
 		i++;
 	}
 }
+
+//main function receives PID and message as arguments
+//check the number of arguments
+//starts a loop to send each character to server
 
 int	main(int argc, char **argv)
 {

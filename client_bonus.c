@@ -6,11 +6,16 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/05/30 18:41:33 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:43:50 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+//iniatialize string and sends 8 bits of each characters in the string
+//sends SIGUSR1 for '1' bits and SIGUSR2 for '0' bits
+//if unable to send signal aknowledge that to user
+//wait 500 microseconds btw signals sent to ensure better communication
 
 void	send_signals(int pid, char *str)
 {
@@ -40,6 +45,9 @@ void	send_signals(int pid, char *str)
 	}
 }
 
+//handler function for received signal
+//if receives any SIGUSR1 signal states message as aknowledged by server
+
 void	handler(int signum)
 {
 	static int	message_printed = 0;
@@ -54,6 +62,8 @@ void	handler(int signum)
 	}
 }
 
+//checks for a valid PID
+
 int	is_valid_pid(const char *pid)
 {
 	int	i;
@@ -67,6 +77,11 @@ int	is_valid_pid(const char *pid)
 	}
 	return (1);
 }
+
+//main function receives PID and message as arguments
+//check the number of arguments, valid PID and valid message
+//configures sigaction and set handlers to receive confirmation
+//uses send_signal functions to send string
 
 int	main(int argc, char **argv)
 {
