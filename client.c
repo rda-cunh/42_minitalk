@@ -16,14 +16,14 @@
 //sends SIGUSR1 for '1' bits and SIGUSR2 for '0' bits
 //wait 1000 microseconds btw signals sent to ensure better communication
 
-void	send_signals(int pid, unsigned char octet)
+void	send_signals(int pid, unsigned char c)
 {
 	int	i;
 
 	i = 0;
 	while (i < 8)
 	{
-		if (octet & (0b10000000 >> i))
+		if (c & (0b10000000 >> i))
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
