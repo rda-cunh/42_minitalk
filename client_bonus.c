@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:58:21 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/06/03 13:18:07 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/03 18:17:05 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	send_signals(int pid, char *str)
 {
-	int	i;
+	int				i;
 	unsigned char	c;
 
 	while (*str)
